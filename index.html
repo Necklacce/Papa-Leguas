@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0576ad">
+  <title>Papa-Léguas Delivery Co. — A fome não espera</title>
+  <meta name="description" content="Peça sua comida favorita com a velocidade do Papa-Léguas.">
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{--blue:#0579b4;--deep:#00375e;--navy:#062b4a;--yellow:#ffb51b;--orange:#ff8500;--cream:#fff9ed;--ink:#ffffff;--muted:#5a7082;--line:#e8e1d4}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:"Nunito Sans",Arial,sans-serif}button,input{font:inherit}button{cursor:pointer}
+    .hero{min-height:330px;background:#fff url("assets/hero.jpg") center/cover no-repeat;position:relative;isolation:isolate;border-bottom:1px solid #eee}
+    /* The reference artwork is retained as the hero's visual anchor; the working search sits below it on small screens. */
+
+    .topbar{position:relative;z-index:2;min-height:62px;display:flex;align-items:center;gap:26px;padding:12px 5.5%;background:#092f52}
+    .brand{display:flex;align-items:center;gap:7px;color:var(--ink);text-decoration:none;font:900 italic 24px/.82 "Barlow Condensed",sans-serif;white-space:nowrap}
+    .brand-bird{display:inline-flex;color:var(--blue);transform:rotate(-12deg)}.brand-bird svg{width:34px;height:34px;stroke-width:2.6}
+    .brand small{display:block;font:800 8px "Nunito Sans";letter-spacing:2.4px;margin-top:4px}
+    .main-nav{display:flex;align-items:center;gap:clamp(12px,2vw,30px);flex:1}
+    .main-nav a{color:var(--ink);text-decoration:none;font-size:11px;font-weight:800;padding:8px 0;white-space:nowrap}
+    .main-nav a.active{border-bottom:2px solid var(--orange)}
+    .top-actions{display:flex;align-items:center;gap:22px;font-size:9px;white-space:nowrap}.delivery-location{display:flex;align-items:center;gap:6px;border:0;background:transparent;color:inherit;text-align:left;padding:4px 6px;border-radius:8px}.delivery-location:hover,.delivery-location:focus-visible{background:#eaf5fb;color:#092f52;outline:2px solid #8ec9e6}.delivery-location>svg{width:18px;height:18px;fill:var(--blue);color:var(--blue)}.delivery-location .tiny-icon{width:12px;height:12px;fill:none}
+    .top-actions b{font-size:10px}.cart{position:relative;font-size:18px;display:inline-flex}.cart svg{width:21px;height:21px}.cart sup{position:absolute;right:-8px;top:-5px;border-radius:50%;background:var(--orange);color:#fff;padding:2px 5px;font-size:9px}.user-icon{border:2px solid #d6e0e7;border-radius:50%;padding:5px;color:var(--blue);display:inline-flex}.user-icon svg{width:17px;height:17px}
+    .hero-copy{position:absolute;z-index:1;left:5.6%;top:26%;max-width:48%;color:var(--ink)}
+    .turbo-tag{display:inline-flex;align-items:center;gap:4px;background:var(--yellow);color:#082e4d;border-radius:20px;padding:5px 12px;font:900 italic 10px "Barlow Condensed";transform:rotate(-3deg)}.turbo-tag svg{width:13px;height:13px;stroke-width:3}
+    .hero-copy h1{font:900 italic clamp(26px,3.1vw,44px)/1.2 "Barlow Condensed",sans-serif;margin:12px 0 7px;letter-spacing:-0.5px}
+    .hero-copy h1 em{color:var(--orange);font-style:italic}.hero-copy p{font-size:12px;margin:0;color:#ffffff}
+    .hero-search{top:65%}
+    /* Sombra atrás dos textos do hero para garantir leitura sobre a arte */
+    .hero-copy h1{text-shadow:0 2px 3px #00203ccc,0 4px 16px #00203c99,0 0 32px #00203c66}
+    .hero-copy p{text-shadow:0 1px 3px #00203ccc,0 2px 10px #00203c99}
+    .turbo-tag{box-shadow:0 3px 10px #00203c55}
+    .brand,.main-nav a{text-shadow:0 1px 3px #0006}
+    .categories{text-shadow:0 1px 3px #000c,0 2px 10px #00203c99}
+    .category .ico{filter:drop-shadow(0 2px 3px #00203caa)}
+
+    .hero-search{position:absolute;left:5.5%;top:69%;width:min(34%,430px);display:flex;background:#fff;border-radius:999px;padding:5px;box-shadow:0 8px 20px #002f4d30}
+    .hero-search input{border:0;outline:0;min-width:0;flex:1;padding:9px 13px;background:transparent;color:var(--ink);font-size:13px}
+    .hero-search button{border:0;background:var(--orange);color:#fff;border-radius:50%;width:34px;height:34px;display:grid;place-items:center}.hero-search button svg{width:18px;height:18px}
+    .categories{position:absolute;left:5.6%;top:84%;display:flex;gap:clamp(14px,2.6vw,38px);color:#fff;text-shadow:0 1px 4px #0008;font-size:11px;font-weight:800}
+    .category{display:grid;justify-items:center;gap:4px;min-width:32px}.category .ico{color:var(--yellow);font-size:22px;line-height:1;display:grid;place-items:center}.category .ico svg{width:22px;height:22px;stroke-width:2.2}
+    .section{max-width:1440px;margin:auto;padding:15px 24px}
+    .section-title{display:flex;align-items:center;gap:9px;margin:0 0 10px;font:800 22px/1 "Barlow Condensed",sans-serif;font-style:italic;letter-spacing:-.2px;color:#092f52}
+    .speed-mark{width:24px;height:14px;display:inline-block;transform:skew(-28deg);background:linear-gradient(90deg,#ff8a00 0 28%,#ffc52d 28% 54%,#168bc1 54% 75%,#ff8a00 75%)}
+    .main-grid{display:grid;grid-template-columns:minmax(0,2.15fr) minmax(250px,.82fr);gap:14px;align-items:start}
+    .missions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .mission{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 2px 4px #173b5210;transition:transform .2s,box-shadow .2s;min-width:0}
+    .mission:hover{transform:translateY(-3px);box-shadow:0 8px 18px #173b521a}
+    .mission img{display:block;width:100%;height:72px;object-fit:cover;background:#fff}
+    .mission-body{padding:7px 10px 9px;display:flex;align-items:center;justify-content:space-between;gap:5px}
+    .mission h3{font:800 15px/1.05 "Barlow Condensed",sans-serif;font-style:italic;margin:0 0 3px;color:#092f52}
+    .mission p{font-size:10px;margin:0;color:#294b67;line-height:1.3}
+    .round-arrow{flex:0 0 21px;width:21px;height:21px;border:0;border-radius:50%;background:var(--deep);color:white;font-weight:900;font-size:14px;display:grid;place-items:center;padding:0}.round-arrow svg{width:13px;height:13px;stroke-width:2.8}
+    /* Restaurantes em destaque (mesmo padrão visual dos cards de missão) */
+    .restaurants-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px}.restaurants-head .section-title{margin:0 0 10px}
+    .see-all{display:inline-flex;align-items:center;gap:4px;border:0;background:transparent;color:#092f52;font-size:11px;font-weight:800;padding:2px 0 3px;border-bottom:1px solid #092f52;margin-bottom:10px}.see-all svg{width:12px;height:12px;stroke-width:2.8}
+    .restaurant .thumb{position:relative}.restaurant .thumb img{display:block}
+    .fav{position:absolute;top:6px;right:6px;width:26px;height:26px;border:0;border-radius:50%;background:#ffffffe6;color:#092f52;display:grid;place-items:center;padding:0;box-shadow:0 2px 6px #0003}.fav svg{width:14px;height:14px;stroke-width:2.4}.fav[aria-pressed=true]{color:#e0392b}.fav[aria-pressed=true] svg{fill:#e0392b}
+    .restaurant .mission-body{align-items:flex-start}.restaurant h3{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+    .rating{display:inline-flex;align-items:center;gap:2px;font:800 10px "Nunito Sans",sans-serif;color:#092f52}.rating svg{width:10px;height:10px;fill:var(--yellow);color:var(--yellow)}.rating small{font-weight:600;color:var(--muted)}
+    .rest-meta{display:flex;gap:9px;flex-wrap:wrap;margin-top:5px;font-size:9px;font-weight:700;color:#294b67}.rest-meta span{display:inline-flex;align-items:center;gap:3px}.rest-meta svg{width:11px;height:11px;stroke-width:2.4}
+    .open-status{display:inline-flex;align-items:center;gap:4px;margin-top:5px;font-size:9px;font-weight:800;color:#1e8a3c}.open-status:before{content:"";width:7px;height:7px;border-radius:50%;background:#2fb34f}
+    .restaurant .round-arrow{align-self:center}
+    .tracking{background:linear-gradient(150deg,#07598a,#032d4d);border-radius:12px;color:#fff;overflow:hidden;min-height:248px;box-shadow:0 5px 16px #07395720}
+    .tracking-head{padding:12px 14px 4px;display:flex;align-items:center;gap:8px;color:var(--yellow);font:800 16px "Barlow Condensed";font-style:italic}
+    .truck{font-size:22px;display:inline-flex}.truck svg{width:22px;height:22px;stroke-width:2.5}
+    .timeline{padding:2px 14px 12px}
+    .step{display:grid;grid-template-columns:35px 1fr auto;gap:9px;align-items:center;min-height:47px;position:relative}
+    .step:not(:last-child):after{content:"";position:absolute;left:16px;top:34px;height:23px;border-left:1px dashed #8fc8e4}
+    .step-icon{height:31px;width:31px;border:1px solid var(--yellow);border-radius:50%;display:grid;place-items:center;font-size:15px;background:#07385b}.step-icon svg{width:16px;height:16px}
+    .step strong{display:block;font-size:10px;line-height:1.3}.step small{display:block;color:#c6d8e5;font-size:8px;line-height:1.3;margin-top:2px}.step time{align-self:start;margin-top:8px;font-size:8px;color:#b7d3e5}
+    .tracking-foot{height:53px;border-top:1px solid #eee;display:flex;align-items:center;justify-content:flex-end;padding:8px 15px;color:#fff;font:800 12px "Barlow Condensed";font-style:italic}
+    .benefits{background:linear-gradient(100deg,#ffe8ad,#ffefc9);border-radius:12px;padding:13px 20px 15px}
+    .benefits-list{display:grid;grid-template-columns:repeat(4,1fr);margin-top:15px}
+    .benefit{display:flex;gap:10px;padding:0 12px;align-items:center;border-right:1px solid #d8cdb4;min-width:0}
+    .benefit:first-child{padding-left:0}.benefit:last-child{border-right:0;padding-right:0}
+    .benefit-icon{flex:0 0 38px;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--orange);color:#fff;font-size:22px;font-weight:900}.benefit-icon svg{width:22px;height:22px;stroke-width:2.5}
+    .benefit:nth-child(2) .benefit-icon{background:#f27b00}.benefit:nth-child(3) .benefit-icon{background:transparent;color:var(--orange)}.benefit:nth-child(4) .benefit-icon{background:transparent;color:var(--orange)}
+    .benefit strong{font-size:9px;display:block;margin-bottom:4px;color:#f27b00}.benefit p{font-size:8px;line-height:1.45;margin:0;color:#3c5367}
+    .lower-grid{display:grid;grid-template-columns:minmax(0,2.15fr) minmax(250px,.82fr);gap:14px;margin-top:13px;align-items:stretch}
+    .promo{min-height:110px;border-radius:12px;background:#fff;border:1px dashed #cfcfcf;position:relative;overflow:hidden;display:flex;justify-content:flex-end;align-items:center;padding:14px 5%;color:#073457}
+    .promo-copy{width:58%;text-align:center;text-shadow:0 1px #fff7}.promo h2{font:900 23px/.95 "Barlow Condensed";font-style:italic;margin:0 0 7px;text-transform:uppercase}.promo p{font-size:10px;font-weight:800;margin:0 0 9px}
+    .cta{border:0;border-radius:99px;background:var(--deep);color:#fff;padding:8px 22px;font-size:10px;font-weight:900;box-shadow:0 3px 0 #001d32;transition:transform .15s;display:inline-flex;align-items:center;gap:4px}.cta svg{width:13px;height:13px}.cta:hover{transform:translateY(-2px)}
+    footer{margin-top:0;background:#fff;color:var(--ink);border-top:1px solid #e6e6e6;min-height:66px;display:flex;align-items:center;justify-content:space-between;padding:12px 5%;gap:18px}
+    .footer-brand{font:900 italic 20px/.85 "Barlow Condensed";white-space:nowrap;display:flex;align-items:center;gap:5px}.footer-brand>svg{width:23px;height:23px;stroke-width:2.8}.footer-brand small{display:block;font:700 8px "Nunito Sans";letter-spacing:2px;margin-left:22px;margin-top:3px}
+    .footer-slogan{font:800 italic 14px "Barlow Condensed";white-space:nowrap}.footer-links{display:flex;gap:18px;align-items:center;font-size:9px;font-weight:800;white-space:nowrap}.footer-links span{display:inline-flex;align-items:center;gap:5px}.footer-links svg{width:13px;height:13px}.social-icons{gap:9px!important}.social-icons svg{width:14px;height:14px}.slogan-icon{width:14px;height:14px;color:var(--orange);vertical-align:middle}
+
+    .location-dialog{width:min(92vw,440px);border:0;border-radius:18px;padding:0;color:#092f52;box-shadow:0 24px 80px #001a2d55}.location-dialog::backdrop{background:#001a2dcc;backdrop-filter:blur(3px)}.dialog-head{padding:20px 22px;background:linear-gradient(120deg,#07598a,#032d4d);color:white;display:flex;align-items:center;justify-content:space-between}.dialog-head h2{margin:0;font:800 24px "Barlow Condensed"}.dialog-close{border:0;background:#ffffff20;color:white;border-radius:50%;width:34px;height:34px}.location-form{padding:22px;display:grid;gap:12px}.location-form label{font-weight:800;font-size:13px}.location-form input{width:100%;border:1px solid #cbd8e1;border-radius:10px;padding:12px;color:#092f52}.dialog-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}.secondary-btn{border:1px solid #cbd8e1;background:#fff;color:#092f52;border-radius:99px;padding:10px 16px;font-weight:800}
+    .lab-section{margin:16px auto 22px;max-width:1380px;padding:0 24px;scroll-margin-top:16px}.lab-shell{border-radius:18px;overflow:hidden;background:linear-gradient(135deg,#fff6dc,#f6dfad);border:1px solid #e7c988;box-shadow:0 8px 24px #62451c12}.lab-header{padding:22px 26px;background:linear-gradient(110deg,#082f50,#07598a);color:white;display:flex;justify-content:space-between;align-items:center;gap:18px}.lab-header h2{font:900 italic clamp(25px,3vw,38px)/.95 "Barlow Condensed";margin:0 0 7px}.lab-header p{margin:0;color:#d8eaf4;font-size:13px}.lab-stamp{border:2px solid var(--yellow);color:var(--yellow);border-radius:12px;padding:10px 14px;font:900 italic 15px "Barlow Condensed";transform:rotate(3deg);white-space:nowrap}.lab-content{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr);gap:20px;padding:22px}.machine-card{position:relative;min-height:300px;border-radius:15px;background:radial-gradient(circle at 50% 35%,#ffcf5d 0 10%,transparent 34%),linear-gradient(145deg,#27465c,#091e32);border:5px solid #e3a044;box-shadow:inset 0 0 0 2px #102c42;display:grid;place-items:center;overflow:hidden}.machine-card:before,.machine-card:after{content:"";position:absolute;top:12px;bottom:12px;width:13px;background:repeating-linear-gradient(135deg,#ffc42e 0 8px,#152f43 8px 16px);border-radius:5px}.machine-card:before{left:12px}.machine-card:after{right:12px}.machine-glass{position:relative;z-index:1;width:min(62%,260px);min-height:225px;border:8px solid #7d8b96;border-radius:28px;background:linear-gradient(180deg,#ffefb0aa,#ff8a0022);box-shadow:0 0 30px #ffb51b77,inset 0 0 25px #fff9;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;text-align:center;color:white}.machine-glass .flask{font-size:58px;filter:drop-shadow(0 4px 2px #001b2c66)}.machine-glass strong{font:900 italic 22px "Barlow Condensed"}.machine-glass span{font-size:11px;color:#fff5d9}.machine-pipes{position:absolute;inset:25px 35px;border:5px solid #d66a21;border-left-color:#91a9b8;border-right-color:#91a9b8;border-radius:18px;pointer-events:none}.lab-controls{background:#fffdf5;border:1px solid #e5d4ad;border-radius:14px;padding:18px}.lab-controls h3{margin:0 0 14px;font:800 23px "Barlow Condensed"}.control-group{margin:0 0 17px}.control-group label,.control-label{display:block;font-size:12px;font-weight:900;margin-bottom:8px}.range-row{display:flex;justify-content:space-between;gap:8px;font-size:12px;font-weight:800}.lab-controls input[type=range]{width:100%;accent-color:var(--orange)}.choice-row{display:flex;gap:7px;flex-wrap:wrap}.choice-row button{flex:1;min-width:80px;border:1px solid #c7d6df;border-radius:9px;background:#f2f6f8;color:var(--ink);padding:10px 8px;font-size:12px;font-weight:800}.choice-row button[aria-pressed=true]{background:#07598a;color:#fff;border-color:#07598a}.lab-summary{padding:13px;border-radius:10px;background:#fff1c7;margin:8px 0 14px;font-size:12px;line-height:1.6}.lab-summary strong{font-size:18px;color:#a74c00}.lab-submit{width:100%;justify-content:center;background:var(--orange);color:#102e45;padding:12px;font-size:12px}.lab-footnote{font-size:11px;color:#6d624d;margin:12px 0 0}.delivery-location{cursor:pointer}
+    @media(max-width:700px){.lab-content{grid-template-columns:1fr;padding:14px}.machine-card{min-height:250px}.lab-header{padding:18px;align-items:flex-start}.lab-stamp{font-size:11px;padding:8px}.lab-section{padding:0 12px}.location-form{padding:18px}}
+
+    .toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#062b4a;color:#fff;padding:12px 18px;border-radius:12px;box-shadow:0 8px 30px #001a2d50;font-size:13px;z-index:10;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(min-width:1200px){.hero{min-height:clamp(330px,32.3vw,460px);background-size:auto 100%}.section{padding-left:3%;padding-right:3%}.mission img{height:clamp(72px,7vw,110px)}.tracking{min-height:270px}}
+    @media(max-width:850px){.topbar{padding:10px 4%;gap:14px;flex-wrap:wrap}.main-nav{order:3;flex-basis:100%;justify-content:space-between}.top-actions{margin-left:auto}.hero-copy{top:38%;max-width:65%}.hero{min-height:300px}.hero-search{top:70%;left:5%;width:48%}.categories{top:86%;left:5%;gap:18px}.main-grid,.lower-grid{grid-template-columns:1fr}.tracking{min-height:auto}.tracking-foot{display:none}.section{padding:14px 16px}.missions{grid-template-columns:repeat(4,minmax(0,1fr))}.benefit{padding:0 8px}.benefit-icon{flex-basis:30px;width:30px;height:30px;font-size:18px}.footer-links{gap:10px}}
+    @media(max-width:560px){.topbar{min-height:58px}.brand{font-size:20px}.brand-bird{font-size:27px}.top-actions{gap:10px}.top-actions>span:first-child{display:none}.main-nav{gap:8px}.main-nav a{font-size:9px}.hero-copy{top:39%;left:5%;max-width:90%}.hero-copy h1{font-size:28px}.hero-copy p{font-size:10px}.hero{min-height:280px}.hero-search{top:70%;left:5%;width:66%}.categories{top:86%;gap:16px;font-size:10px}.category .ico{font-size:19px}.section{padding:13px 12px}.section-title{font-size:21px}.missions{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.mission img{height:95px}.mission h3{font-size:16px}.mission p{font-size:10px}.benefits{padding:13px}.benefits-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 0}.benefit{border-right:0;padding:0 5px}.benefit:nth-child(odd){border-right:1px solid #d8cdb4;padding-left:0}.benefit:nth-child(even){padding-right:0;padding-left:10px}.benefit strong{font-size:10px}.benefit p{font-size:9px}.promo{min-height:130px;background-position:center}.promo-copy{width:65%}.promo h2{font-size:22px}.promo p{font-size:9px}footer{flex-wrap:wrap;justify-content:center;text-align:center;padding:15px 10px;gap:12px}.footer-brand{font-size:19px}.footer-brand>svg{width:20px;height:20px}.footer-slogan{display:none}.footer-links{width:100%;justify-content:center;flex-wrap:wrap;font-size:9px}.tracking-head{font-size:17px}.step{min-height:50px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="hero" aria-label="Papa-Léguas Delivery">
+    <div class="topbar">
+      <a class="brand" href="#" aria-label="Papa-Léguas Delivery Co."><span class="brand-bird"><i data-lucide="send"></i></span><span>PAPA-LÉGUAS<small>DELIVERY CO.</small></span></a>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a class="active" href="#inicio">Início</a><a href="#missoes">Restaurantes</a><a href="#beneficios">Ofertas</a><a href="#beneficios">Beep-Beep Club</a><a href="#laboratorio">Sobre</a>
+      </nav>
+      <div class="top-actions"><button class="delivery-location" id="openLocation" type="button" aria-haspopup="dialog" aria-controls="locationDialog"><i data-lucide="map-pin"></i><span>Entregar em<br><b id="currentCity">São Paulo, SP</b></span><i data-lucide="chevron-down" class="tiny-icon"></i></button><span class="cart" aria-label="Carrinho"><i data-lucide="shopping-cart"></i><sup>2</sup></span><span class="user-icon" aria-label="Minha conta"><i data-lucide="user-round"></i></span></div>
+    </div>
+    <div class="hero-copy" id="inicio">
+      <span class="turbo-tag"><i data-lucide="zap"></i> ENTREGA EM MODO TURBO</span>
+      <h1>A FOME NÃO ESPERA.<br><em>A GENTE TAMBÉM NÃO.</em></h1>
+      <p></p>
+    </div>
+    <form class="hero-search" id="searchForm">
+      <input id="foodSearch" type="search" placeholder="O que vamos devorar hoje?" aria-label="Buscar comida">
+      <button aria-label="Buscar" type="submit"><i data-lucide="arrow-right"></i></button>
+    </form>
+    <nav class="categories" aria-label="Categorias">
+      <div class="category"><span class="ico"><i data-lucide="sandwich"></i></span><span>Lanches</span></div>
+      <div class="category"><span class="ico"><i data-lucide="pizza"></i></span><span>Pizzas</span></div>
+      <div class="category"><span class="ico"><i data-lucide="shopping-basket"></i></span><span>Mercado</span></div>
+      <div class="category"><span class="ico"><i data-lucide="cup-soda"></i></span><span>Bebidas</span></div>
+      <div class="category"><span class="ico"><i data-lucide="candy"></i></span><span>Doces</span></div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section main-grid" id="missoes" aria-label="Missões e acompanhamento">
+      <div>
+        <h1 class="section-title"><span class="speed-mark"></span> Escolha sua próxima missão</h1>
+        <div class="missions">
+          <article class="mission"><img src="assets/burger.jpg" alt="Hambúrguer com batatas fritas"><div class="mission-body"><div><h3>Fome de leão</h3><p>Hambúrgueres e lanches</p></div><button class="round-arrow" data-action="Fome de leão" aria-label="Explorar lanches"><i data-lucide="arrow-right"></i></button></div></article>
+          <article class="mission"><img src="assets/pizza.jpg" alt="Pizza artesanal"><div class="mission-body"><div><h3>Missão redonda</h3><p>Pizzas e combos</p></div><button class="round-arrow" data-action="Missão redonda" aria-label="Explorar pizzas"><i data-lucide="arrow-right"></i></button></div></article>
+          <article class="mission"><img src="assets/market.jpg" alt="Sacola com frutas e legumes"><div class="mission-body"><div><h3>Modo abastecimento</h3><p>Mercado e conveniência</p></div><button class="round-arrow" data-action="Modo abastecimento" aria-label="Explorar mercado"><i data-lucide="arrow-right"></i></button></div></article>
+          <article class="mission"><img src="assets/dessert.jpg" alt="Milkshake e sobremesa de chocolate"><div class="mission-body"><div><h3>Desejo urgente</h3><p>Doces e sobremesas</p></div><button class="round-arrow" data-action="Desejo urgente" aria-label="Explorar doces"><i data-lucide="arrow-right"></i></button></div></article>
+        </div>
+        <div class="restaurants-head" id="restaurantes"><h2 class="section-title"><span class="speed-mark"></span> Restaurantes em destaque</h2><button class="see-all" type="button" data-restaurant="todos os restaurantes">Ver todos <i data-lucide="arrow-right"></i></button></div>
+        <div class="missions restaurants" aria-label="Restaurantes próximos">
+          <article class="mission restaurant"><div class="thumb"><img src="assets/burger.jpg" alt="Hambúrguer do Burger Track"><button class="fav" type="button" aria-pressed="false" aria-label="Favoritar Burger Track"><i data-lucide="heart"></i></button></div><div class="mission-body"><div><h3>Burger Track <span class="rating"><i data-lucide="star"></i>4.8 <small>(1,2k)</small></span></h3><p>Hambúrgueres • Lanches</p><div class="rest-meta"><span><i data-lucide="clock"></i>25–40 min</span><span><i data-lucide="bike"></i>R$ 6,90</span></div><span class="open-status">Aberto</span></div><button class="round-arrow" data-restaurant="Burger Track" aria-label="Ver Burger Track"><i data-lucide="arrow-right"></i></button></div></article>
+          <article class="mission restaurant"><div class="thumb"><img src="assets/pizza.jpg" alt="Pizza da Pizza Express"><button class="fav" type="button" aria-pressed="false" aria-label="Favoritar Pizza Express"><i data-lucide="heart"></i></button></div><div class="mission-body"><div><h3>Pizza Express <span class="rating"><i data-lucide="star"></i>4.6 <small>(980)</small></span></h3><p>Pizzas • Massas</p><div class="rest-meta"><span><i data-lucide="clock"></i>30–50 min</span><span><i data-lucide="bike"></i>R$ 7,90</span></div><span class="open-status">Aberto</span></div><button class="round-arrow" data-restaurant="Pizza Express" aria-label="Ver Pizza Express"><i data-lucide="arrow-right"></i></button></div></article>
+          <article class="mission restaurant"><div class="thumb"><img src="assets/market.jpg" alt="Frutas e legumes do Mercado do Deserto"><button class="fav" type="button" aria-pressed="false" aria-label="Favoritar Mercado do Deserto"><i data-lucide="heart"></i></button></div><div class="mission-body"><div><h3>Mercado do Deserto <span class="rating"><i data-lucide="star"></i>4.5 <small>(642)</small></span></h3><p>Mercado • Bebidas • Conveniência</p><div class="rest-meta"><span><i data-lucide="clock"></i>20–40 min</span><span><i data-lucide="bike"></i>R$ 5,90</span></div><span class="open-status">Aberto</span></div><button class="round-arrow" data-restaurant="Mercado do Deserto" aria-label="Ver Mercado do Deserto"><i data-lucide="arrow-right"></i></button></div></article>
+          <article class="mission restaurant"><div class="thumb"><img src="assets/dessert.jpg" alt="Sobremesa da Doce Parada"><button class="fav" type="button" aria-pressed="false" aria-label="Favoritar Doce Parada"><i data-lucide="heart"></i></button></div><div class="mission-body"><div><h3>Doce Parada <span class="rating"><i data-lucide="star"></i>4.7 <small>(538)</small></span></h3><p>Doces • Sobremesas</p><div class="rest-meta"><span><i data-lucide="clock"></i>20–35 min</span><span><i data-lucide="bike"></i>R$ 5,90</span></div><span class="open-status">Aberto</span></div><button class="round-arrow" data-restaurant="Doce Parada" aria-label="Ver Doce Parada"><i data-lucide="arrow-right"></i></button></div></article>
+        </div>
+      </div>
+      <aside class="tracking" aria-label="Acompanhe seu pedido">
+        <div class="tracking-head"><span class="truck"><i data-lucide="truck"></i></span> ACOMPANHE SEU PEDIDO</div>
+        <div class="timeline">
+          <div class="step"><span class="step-icon"><i data-lucide="cooking-pot"></i></span><div><strong>Restaurante preparando</strong><small>O combustível está sendo preparado.</small></div><time>12:24</time></div>
+          <div class="step"><span class="step-icon"><i data-lucide="truck"></i></span><div><strong>Entregador a caminho</strong><small>Poeira na estrada. Seu pedido vem aí!</small></div><time>12:37</time></div>
+          <div class="step"><span class="step-icon"><i data-lucide="house"></i></span><div><strong>Pedido entregue</strong><small>Chegamos antes da fome vencer.</small></div><time>12:42</time></div>
+        </div>
+        <div class="tracking-foot">QUASE LÁ...</div>
+      </aside>
+    </section>
+
+    <section class="section lower-grid" id="beneficios" aria-label="Benefícios e diversão">
+      <div class="benefits">
+        <h2 class="section-title"><span class="speed-mark"></span> Por que pedir com o Papa-Léguas?</h2>
+        <div class="benefits-list">
+          <div class="benefit"><span class="benefit-icon"><i data-lucide="zap"></i></span><div><strong>Entrega turbo</strong><p>Você escolhe o limite. Nós encontramos o caminho.</p></div></div>
+          <div class="benefit"><span class="benefit-icon"><i data-lucide="shield-check"></i></span><div><strong>Compensação garantida</strong><p>Se atrasar, você recebe um cupom.</p></div></div>
+          <div class="benefit"><span class="benefit-icon"><i data-lucide="star"></i></span><div><strong>Beep-Beep Club</strong><p>Pontos que viram recompensas de verdade.</p></div></div>
+          <div class="benefit"><span class="benefit-icon"><i data-lucide="flask-conical"></i></span><div><strong>Laboratório ACME</strong><p>Combos personalizados para cada fome.</p></div></div>
+        </div>
+      </div>
+      <aside class="promo">
+        <div class="promo-copy"><h2>Teste sua velocidade!</h2><p>Consegue acompanhar o Papa-Léguas?</p><button class="cta" id="playButton">JOGAR AGORA&nbsp; <i data-lucide="arrow-right"></i></button></div>
+      </aside>
+    </section>
+  </main>
+
+
+  <footer id="sobre">
+    <div class="footer-brand"><i data-lucide="send"></i> PAPA-LÉGUAS<small>DELIVERY CO.</small></div>
+    <div class="footer-slogan"><i data-lucide="zap" class="slogan-icon"></i> Mais que delivery. É uma corrida.</div>
+    <div class="footer-links"><span><i data-lucide="smartphone"></i> App em breve</span><span><i data-lucide="shield-check"></i> Pagamento seguro</span><span><i data-lucide="headphones"></i> Suporte 24h</span><span class="social-icons" aria-label="Redes sociais"><i data-lucide="instagram"></i><i data-lucide="music-2"></i><i data-lucide="youtube"></i></span></div>
+  </footer>
+  <dialog class="location-dialog" id="locationDialog" aria-labelledby="locationTitle"><div class="dialog-head"><h2 id="locationTitle"><i data-lucide="map-pin"></i> Onde vamos entregar?</h2><button class="dialog-close" id="closeLocation" type="button" aria-label="Fechar">×</button></div><form class="location-form" id="locationForm"><label for="cityInput">Digite sua cidade e estado</label><input id="cityInput" name="city" autocomplete="address-level2" placeholder="Ex.: Aracaju, SE" required maxlength="80"><p style="margin:0;font-size:12px;color:#5a7082">Por enquanto, a localização é apenas um protótipo visual. Não usamos seu GPS.</p><div class="dialog-actions"><button class="secondary-btn" id="cancelLocation" type="button">Cancelar</button><button class="cta" type="submit">Salvar localização</button></div></form></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    if (window.lucide) lucide.createIcons();
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    function notify(message){
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(()=>toast.classList.remove('show'), 2600);
+    }
+    document.getElementById('searchForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const query = document.getElementById('foodSearch').value.trim();
+      notify(query ? `Procurando as melhores opções para “${query}”...` : 'Digite o que você está com vontade de comer.');
+    });
+    document.querySelectorAll('[data-action]').forEach(button => button.addEventListener('click', () => notify(`Missão selecionada: ${button.dataset.action}. Em breve você verá os restaurantes!`)));
+    document.querySelectorAll('[data-restaurant]').forEach(button => button.addEventListener('click', () => notify(`Abrindo ${button.dataset.restaurant}. O cardápio chega em breve!`)));
+    document.querySelectorAll('.fav').forEach(button => button.addEventListener('click', () => { const on = button.getAttribute('aria-pressed') !== 'true'; button.setAttribute('aria-pressed', String(on)); notify(on ? 'Restaurante favoritado.' : 'Removido dos favoritos.'); }));
+    document.getElementById('playButton').addEventListener('click', () => notify('Prepare-se para a corrida! O mini game chega em breve.'));
+    const locationDialog = document.getElementById('locationDialog');
+    const cityInput = document.getElementById('cityInput');
+    document.getElementById('openLocation').addEventListener('click', () => { cityInput.value = document.getElementById('currentCity').textContent; locationDialog.showModal(); cityInput.focus(); });
+    function closeLocation(){ locationDialog.close(); }
+    document.getElementById('closeLocation').addEventListener('click', closeLocation);
+    document.getElementById('cancelLocation').addEventListener('click', closeLocation);
+    document.getElementById('locationForm').addEventListener('submit', e => { e.preventDefault(); const city = cityInput.value.trim().replace(/\s+/g, ' '); if(!city) return; document.getElementById('currentCity').textContent = city; closeLocation(); notify(`Local de entrega atualizado para ${city}.`); });
+    const budget = document.getElementById('budget');
+    const foodType = document.getElementById('foodType');
+    let people = 2;
+    function updateCombo(){ const price = Number(budget.value); const money = `R$ ${price.toLocaleString('pt-BR')}`; const personText = people === 4 ? '3–4 pessoas' : `${people} ${people === 1 ? 'pessoa' : 'pessoas'}`; document.getElementById('budgetValue').textContent = money; document.getElementById('summaryBudget').textContent = money; document.getElementById('summaryType').textContent = foodType.value; document.getElementById('summaryPeople').textContent = personText; document.getElementById('machineTitle').textContent = price >= 80 ? 'COMBO MEGA TURBO' : price >= 40 ? 'COMBO TURBO' : 'COMBO EXPRESSO'; }
+    budget.addEventListener('input', updateCombo); foodType.addEventListener('change', updateCombo);
+    document.querySelectorAll('[data-people]').forEach(button => button.addEventListener('click', () => { people = Number(button.dataset.people); document.querySelectorAll('[data-people]').forEach(b => b.setAttribute('aria-pressed', String(b === button))); updateCombo(); }));
+    document.getElementById('createCombo').addEventListener('click', () => { updateCombo(); notify(`Invenção pronta: ${foodType.value}, ${people === 4 ? '3–4 pessoas' : people + (people === 1 ? ' pessoa' : ' pessoas')}, limite de R$ ${Number(budget.value).toLocaleString('pt-BR')}.`); });
+    updateCombo();
+  </script>
+</body>
+</html>

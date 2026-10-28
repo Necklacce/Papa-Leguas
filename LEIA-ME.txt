@@ -1,0 +1,26 @@
+PAPA-LÉGUAS DELIVERY — VERSÃO COM ESPAÇOS EM BRANCO
+=====================================================
+
+Esta versão remove as imagens da referência e substitui os arquivos visuais por imagens brancas,
+mantendo as dimensões dos espaços reservados para que você possa inserir suas próprias artes.
+
+Como abrir:
+1. Extraia o ZIP.
+2. Abra index.html no navegador.
+3. Edite index.html no VS Code para trocar textos, cores, dimensões e caminhos das imagens.
+
+Arquivos visuais em assets/:
+- hero.jpg: área visual do topo (placeholder branco)
+- burger.jpg, pizza.jpg, market.jpg, dessert.jpg: imagens dos quatro cards
+- promo.jpg: arte da promoção
+- footer.jpg: textura/arte do rodapé
+
+Para inserir uma imagem, substitua o arquivo correspondente mantendo o mesmo nome, ou altere o caminho
+no HTML/CSS. O cabeçalho, tipografias, botões e layout permanecem no lugar; a navegação e ações são
+demonstrativas e ainda não estão ligadas a um backend real.
+
+
+ÍCONES:
+A interface usa ícones vetoriais da biblioteca Lucide via CDN (internet necessária para carregá-los).
+A biblioteca é open source e os ícones são renderizados como SVG; você pode alterar os nomes data-lucide
+no index.html para escolher outros ícones em https://lucide.dev/icons.
